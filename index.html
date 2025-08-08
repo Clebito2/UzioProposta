@@ -21,184 +21,39 @@
             background-color: var(--live-azul-petroleo);
             color: var(--live-branco);
             background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
-            background-attachment: fixed; /* Adicionado para fixar a textura de fundo */
+            background-attachment: fixed;
         }
         .font-merriweather { font-family: var(--font-merriweather); }
         .text-live-verde {
             color: var(--live-verde-vibrante);
-            text-shadow: 0 0 8px rgba(0, 232, 0, 0.7);
+            text-shadow: 0 0 10px rgba(0, 232, 0, 0.7);
         }
-        h1, h2, h3, h4 {
-            font-weight: 700;
-        }
-        h1 { font-size: 2.5rem; }
-        h2 { font-size: 2rem; text-align: center; margin-bottom: 3rem; }
-        h3 { font-size: 1.25rem; }
-        h4 { font-size: 1.1rem; margin: 0; }
-        p { line-height: 1.6; color: #a0aec0; }
-
         .card {
             border: 1px solid #ffffff20;
             border-radius: 12px;
             background-color: #0A243D;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
+            max-width: 800px; /* Largura máxima para os cards */
+            margin-left: auto;
+            margin-right: auto;
         }
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
         }
-        .card.diagnostic {
-             border-left: 4px solid var(--live-verde-vibrante);
-        }
-        .card.diagnostic p {
-            font-family: var(--font-merriweather);
-            font-style: italic;
-            font-size: 1.1rem;
-            color: var(--live-branco);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .fade-in {
-            animation: fadeIn 0.8s ease-out forwards;
-        }
-
-        /* Estilos da Timeline */
-        .timeline {
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .timeline::after {
-            content: '';
-            position: absolute;
-            width: 6px;
-            background-color: var(--live-verde-vibrante);
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -3px;
-            border-radius: 3px;
-            animation: grow-line 2s ease-out forwards;
-        }
-        @keyframes grow-line {
-            from { height: 0; }
-            to { height: 100%; }
-        }
-        .timeline-container {
-            padding: 10px 40px;
-            position: relative;
-            background-color: inherit;
-            width: 50%;
+        .section-reveal {
             opacity: 0;
-            animation: slide-in 0.6s ease-out forwards;
+            transform: translateY(40px);
+            transition: all 1s ease-out;
         }
-        .timeline-container:nth-child(1) { animation-delay: 0.2s; }
-        .timeline-container:nth-child(2) { animation-delay: 0.4s; }
-        .timeline-container:nth-child(3) { animation-delay: 0.6s; }
-        .timeline-container:nth-child(4) { animation-delay: 0.8s; }
-        .timeline-container:nth-child(5) { animation-delay: 1.0s; }
-
-        @keyframes slide-in {
-            from { transform: translateX(-50px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
+        .section-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
-        .timeline-right { animation-name: slide-in-right; }
-        @keyframes slide-in-right {
-            from { transform: translateX(50px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-
-        .timeline-container::after {
-            content: attr(data-step);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: var(--live-azul-petroleo);
-            position: absolute;
-            width: 40px;
-            height: 40px;
-            right: -20px;
-            background-color: var(--live-azul-petroleo);
-            border: 4px solid var(--live-verde-vibrante);
-            top: 25px;
-            border-radius: 50%;
-            z-index: 1;
-        }
-        .timeline-left { left: 0; }
-        .timeline-right { left: 50%; }
-        .timeline-right::after { left: -20px; }
-        .timeline-content {
-            padding: 20px 30px;
-            background-color: #0A243D;
-            position: relative;
-            border-radius: 8px;
-            border: 1px solid #ffffff30;
-        }
-        @media screen and (max-width: 768px) {
-            .timeline::after { left: 31px; }
-            .timeline-container { width: 100%; padding-left: 70px; padding-right: 25px; }
-            .timeline-left, .timeline-right { left: 0%; animation-name: slide-in; }
-            .timeline-left::after, .timeline-right::after { left: 11px; }
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: #0A243D;
-            border-radius: 0.5rem;
+        .table-container {
+            border-radius: 12px;
             overflow: hidden;
-        }
-        th, td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid #06192a;
-        }
-        th {
-            color: var(--live-branco);
-            font-weight: 600;
-        }
-        tbody tr:last-child td {
-            border-bottom: none;
-        }
-        .text-right { text-align: right; }
-        
-        ul.scope-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        ul.scope-list li {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        .check-icon {
-            font-size: 1.5rem;
-            color: var(--live-verde-vibrante);
-            margin-top: -4px;
-        }
-
-        .total-investment {
-            text-align: center;
-            background-color: #04121f;
-            padding: 2rem;
-            border-radius: 0.5rem;
-            margin: 2rem 0;
-        }
-        .total-investment p {
-            margin: 0;
-            font-size: 1.25rem;
-        }
-        .total-investment .total-value {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--live-verde-vibrante);
-            margin-top: 0.5rem;
         }
     </style>
 </head>
@@ -207,157 +62,128 @@
     <header class="py-4 px-4 sm:px-6 md:px-8 fixed top-0 left-0 right-0 z-50 bg-live-azul-petroleo/80 backdrop-blur-sm">
         <div class="container mx-auto flex justify-between items-center">
             <img src="https://raw.githubusercontent.com/Clebito2/layout/main/Logo%20live%20oficial-36.png" alt="Logo Live Liderança & Vendas" class="h-12">
-            <p class="hidden md:block text-right text-gray-300">Proposta para: Uzio</p>
+            <p class="hidden md:block text-right text-gray-300 font-bold">Proposta para: UZIO</p>
         </div>
     </header>
 
     <main class="pt-24">
-        <section class="py-20 md:py-28 text-center fade-in">
-            <div class="container">
-                <h1>Plano de Ação e Proposta para <span class="text-live-verde">Uzio</span></h1>
-                <p class="text-xl mt-2">Apresentado em: 08 de agosto de 2025</p>
+        <section class="py-20 md:py-32 text-center section-reveal">
+            <div class="container mx-auto px-4">
+                <h1 class="text-4xl md:text-6xl font-bold leading-tight">
+                    Plano de Ação e Proposta para <br class="hidden md:block"> <span class="text-live-verde">UZIO</span>
+                </h1>
+                <p class="text-xl mt-4 text-gray-300">Apresentado em: 08 de Agosto de 2025</p>
             </div>
         </section>
 
-        <div class="container">
-            <section id="diagnosis" class="fade-in">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl md:text-4xl">Diagnóstico Estratégico</h2>
+        <section class="py-16 md:py-20 text-center section-reveal">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl md:text-5xl font-bold mb-12">Diagnóstico Estratégico</h2>
+                <div class="card p-8 md:p-10 text-left">
+                    <p class="font-merriweather italic text-xl md:text-2xl text-gray-200 leading-relaxed">
+                        "A Uzio enfrenta desafios na eficiência de vendas, com oportunidades perdidas devido à falta de acompanhamento de clientes e propostas. A empresa busca expandir suas linhas de produtos e canais de venda, explorando nichos como marketplace e varejo direto ao consumidor. Há uma necessidade de qualificar melhor a carteira de clientes e otimizar o atendimento, além de estruturar o comercial e o marketing para alavancar o crescimento e melhorar a margem de faturamento. A empresa reconhece a importância de alinhar estratégias, processos e pessoas para alcançar resultados sustentáveis e aproveitar as oportunidades de mercado."
+                    </p>
                 </div>
-                <div class="card diagnostic p-8">
-                    <p>"A Uzio enfrenta desafios na eficiência de vendas, com oportunidades perdidas devido à falta de acompanhamento de clientes e propostas. A empresa busca expandir suas linhas de produtos e canais de venda, explorando nichos como marketplace e varejo direto ao consumidor. Há uma necessidade de qualificar melhor a carteira de clientes e otimizar o atendimento, além de estruturar o comercial e o marketing para alavancar o crescimento e melhorar a margem de faturamento. A empresa reconhece a importância de alinhar estratégias, processos e pessoas para alcançar resultados sustentáveis e aproveitar as oportunidades de mercado."</p>
-                </div>
-            </section>
+            </div>
+        </section>
 
-            <section id="action-plan" class="py-16 md:py-24 bg-black/20 fade-in">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl md:text-4xl">Nosso Plano de Ação</h2>
-                     <p class="mt-2 text-gray-400">Uma visão clara das fases do projeto e suas respectivas durações.</p>
+        <section class="py-16 md:py-20 text-center section-reveal">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl md:text-5xl font-bold mb-12">Nosso Plano de Ação (Macro)</h2>
+                <div class="card p-8 md:p-10 text-left space-y-8">
+                    <div>
+                        <h3 class="text-2xl md:text-3xl font-bold text-live-verde">1. Diagnóstico e Planejamento</h3>
+                        <p class="text-lg text-gray-300 mt-2">Análise aprofundada dos processos de vendas, marketing e atendimento. Definição de metas e KPIs claros. <strong class="text-white">(Prazo: 2 semanas)</strong></p>
+                    </div>
+                    <hr class="border-gray-700">
+                    <div>
+                        <h3 class="text-2xl md:text-3xl font-bold text-live-verde">2. Implementação de Quick Wins</h3>
+                        <p class="text-lg text-gray-300 mt-2">Implementação de ações com alto impacto e baixo esforço para gerar resultados imediatos. <strong class="text-white">(Prazo: 3 semanas)</strong></p>
+                    </div>
+                    <hr class="border-gray-700">
+                    <div>
+                        <h3 class="text-2xl md:text-3xl font-bold text-live-verde">3. Estruturação Comercial e Marketing</h3>
+                        <p class="text-lg text-gray-300 mt-2">Desenvolvimento de funil de vendas, qualificação de leads e otimização de campanhas. <strong class="text-white">(Prazo: 6 semanas)</strong></p>
+                    </div>
+                     <hr class="border-gray-700">
+                    <div>
+                        <h3 class="text-2xl md:text-3xl font-bold text-live-verde">4. Expansão de Canais e Produtos</h3>
+                        <p class="text-lg text-gray-300 mt-2">Estratégias para expandir para marketplaces e varejo direto, além de diversificar as linhas de produtos. <strong class="text-white">(Prazo: 8 semanas)</strong></p>
+                    </div>
+                     <hr class="border-gray-700">
+                    <div>
+                        <h3 class="text-2xl md:text-3xl font-bold text-live-verde">5. Otimização do Atendimento</h3>
+                        <p class="text-lg text-gray-300 mt-2">Melhoria do atendimento ao cliente para aumentar a satisfação e a fidelização. <strong class="text-white">(Prazo: 4 semanas)</strong></p>
+                    </div>
                 </div>
-                <div id="timeline-container" class="timeline">
-                    <!-- O conteúdo do cronograma visual será injetado aqui -->
-                </div>
-            </section>
+            </div>
+        </section>
 
-            <section id="schedule" class="fade-in">
-                <h2>Cronograma de Entregáveis</h2>
-                <div class="card p-4">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Etapa</th>
-                                <th>Entregável</th>
-                                <th>Responsável</th>
-                                <th class="text-right">Prazo</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>1</td><td>Relatório de Diagnóstico de Vendas e Marketing</td><td>Consultor Líder</td><td class="text-right">7 dias</td></tr>
-                            <tr><td>1</td><td>Workshop de Alinhamento Estratégico com a Diretoria</td><td>Consultor Líder</td><td class="text-right">2 dias</td></tr>
-                            <tr><td>2</td><td>Implementação de CRM Simplificado</td><td>Especialista em CRM</td><td class="text-right">7 dias</td></tr>
-                            <tr><td>2</td><td>Criação de Script de Abordagem e Qualificação</td><td>Consultor de Vendas</td><td class="text-right">5 dias</td></tr>
-                            <tr><td>3</td><td>Desenvolvimento de Funil de Vendas e Automação</td><td>Especialista em Marketing Digital</td><td class="text-right">15 dias</td></tr>
-                            <tr><td>3</td><td>Treinamento da Equipe Comercial</td><td>Consultor de Vendas</td><td class="text-right">5 dias</td></tr>
-                            <tr><td>4</td><td>Pesquisa de Mercado e Viabilidade de Produtos</td><td>Analista de Mercado</td><td class="text-right">10 dias</td></tr>
-                            <tr><td>4</td><td>Implementação de Estratégia em Marketplace</td><td>Especialista em Marketplace</td><td class="text-right">15 dias</td></tr>
-                            <tr><td>5</td><td>Implementação de Sistema de Feedback do Cliente</td><td>Especialista em Atendimento</td><td class="text-right">10 dias</td></tr>
-                            <tr><td>5</td><td>Criação de Programa de Fidelidade</td><td>Consultor de Marketing</td><td class="text-right">7 dias</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
+        <section class="py-16 md:py-20 text-center section-reveal">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl md:text-5xl font-bold mb-12">Detalhes da Parceria</h2>
+                <div class="card p-8 md:p-10">
+                    <h3 class="text-3xl font-bold mb-6 text-live-verde">Escopo e Investimento</h3>
+                    <div class="table-container">
+                        <table class="w-full text-left text-lg">
+                            <thead class="bg-black/40">
+                                <tr>
+                                    <th class="p-4">Entregável</th>
+                                    <th class="p-4 text-right">Valor</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-gray-300">
+                                <tr class="border-b border-gray-700"><td>Relatório de Diagnóstico de Vendas e Marketing</td><td class="text-right font-bold">R$ 6.000,00</td></tr>
+                                <tr class="border-b border-gray-700"><td>Workshop de Alinhamento Estratégico</td><td class="text-right font-bold">R$ 3.000,00</td></tr>
+                                <tr class="border-b border-gray-700"><td>Implementação de CRM Simplificado</td><td class="text-right font-bold">R$ 7.000,00</td></tr>
+                                <tr class="border-b border-gray-700"><td>Criação de Script de Abordagem e Qualificação</td><td class="text-right font-bold">R$ 3.000,00</td></tr>
+                                <tr class="border-b border-gray-700"><td>Desenvolvimento de Funil de Vendas e Automação</td><td class="text-right font-bold">R$ 12.000,00</td></tr>
+                                <tr class="border-b border-gray-700"><td>Treinamento da Equipe Comercial</td><td class="text-right font-bold">R$ 4.000,00</td></tr>
+                                <tr class="border-b border-gray-700"><td>Pesquisa de Mercado e Viabilidade de Produtos</td><td class="text-right font-bold">R$ 8.000,00</td></tr>
+                                <tr class="border-b border-gray-700"><td>Implementação de Estratégia em Marketplace</td><td class="text-right font-bold">R$ 15.000,00</td></tr>
+                                <tr class="border-b border-gray-700"><td>Implementação de Sistema de Feedback do Cliente</td><td class="text-right font-bold">R$ 9.000,00</td></tr>
+                                <tr><td>Criação de Programa de Fidelidade</td><td class="text-right font-bold">R$ 6.000,00</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
 
-            <section id="details" class="fade-in">
-                <h2>Detalhes da Parceria</h2>
-                
-                <h3>Escopo Detalhado</h3>
-                <div class="card p-6">
-                    <ul class="scope-list">
-                        <li><div class="check-icon">✓</div><div><h4>Relatório de Diagnóstico de Vendas e Marketing</h4><p>Responsável: Consultor Líder | Prazo: 7 dias</p></div></li>
-                        <li><div class="check-icon">✓</div><div><h4>Workshop de Alinhamento Estratégico</h4><p>Responsável: Consultor Líder | Prazo: 2 dias</p></div></li>
-                        <li><div class="check-icon">✓</div><div><h4>Implementação de CRM Simplificado</h4><p>Responsável: Especialista em CRM | Prazo: 7 dias</p></div></li>
-                        <li><div class="check-icon">✓</div><div><h4>Criação de Script de Abordagem e Qualificação</h4><p>Responsável: Consultor de Vendas | Prazo: 5 dias</p></div></li>
-                        <li><div class="check-icon">✓</div><div><h4>Desenvolvimento de Funil de Vendas e Automação</h4><p>Responsável: Especialista em Marketing Digital | Prazo: 15 dias</p></div></li>
-                        <li><div class="check-icon">✓</div><div><h4>Treinamento da Equipe Comercial</h4><p>Responsável: Consultor de Vendas | Prazo: 5 dias</p></div></li>
-                        <li><div class="check-icon">✓</div><div><h4>Pesquisa de Mercado e Viabilidade de Produtos</h4><p>Responsável: Analista de Mercado | Prazo: 10 dias</p></div></li>
-                        <li><div class="check-icon">✓</div><div><h4>Implementação de Estratégia em Marketplace</h4><p>Responsável: Especialista em Marketplace | Prazo: 15 dias</p></div></li>
-                        <li><div class="check-icon">✓</div><div><h4>Implementação de Sistema de Feedback do Cliente</h4><p>Responsável: Especialista em Atendimento | Prazo: 10 dias</p></div></li>
-                        <li><div class="check-icon">✓</div><div><h4>Criação de Programa de Fidelidade</h4><p>Responsável: Consultor de Marketing | Prazo: 7 dias</p></div></li>
-                    </ul>
+                    <div class="bg-black/40 rounded-lg p-8 mt-10">
+                         <p class="text-2xl text-gray-300">Valor Total do Projeto</p>
+                         <p class="text-5xl font-bold text-live-verde mt-2">R$ 73.000,00</p>
+                         <p class="text-xl text-gray-300 mt-6"><strong class="text-white">Condições de Pagamento:</strong> 50% na assinatura do contrato e 50% na entrega final.</p>
+                    </div>
                 </div>
-                
-                <h3 style="margin-top: 3rem;">Investimento</h3>
-                <div class="card p-4">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Entregável</th>
-                                <th class="text-right">Valor</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>Relatório de Diagnóstico de Vendas e Marketing</td><td class="text-right">R$ 6.000,00</td></tr>
-                            <tr><td>Workshop de Alinhamento Estratégico</td><td class="text-right">R$ 3.000,00</td></tr>
-                            <tr><td>Implementação de CRM Simplificado</td><td class="text-right">R$ 7.000,00</td></tr>
-                            <tr><td>Criação de Script de Abordagem e Qualificação</td><td class="text-right">R$ 3.000,00</td></tr>
-                            <tr><td>Desenvolvimento de Funil de Vendas e Automação</td><td class="text-right">R$ 12.000,00</td></tr>
-                            <tr><td>Treinamento da Equipe Comercial</td><td class="text-right">R$ 4.000,00</td></tr>
-                            <tr><td>Pesquisa de Mercado e Viabilidade de Produtos</td><td class="text-right">R$ 8.000,00</td></tr>
-                            <tr><td>Implementação de Estratégia em Marketplace</td><td class="text-right">R$ 15.000,00</td></tr>
-                            <tr><td>Implementação de Sistema de Feedback do Cliente</td><td class="text-right">R$ 9.000,00</td></tr>
-                            <tr><td>Criação de Programa de Fidelidade</td><td class="text-right">R$ 6.000,00</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-                
-                <div class="total-investment card">
-                    <p>Valor Total do Projeto</p>
-                    <p class="total-value">R$ 73.000,00</p>
-                </div>
-
-                <div class="card p-6">
-                    <h3>Condições de Pagamento:</h3>
-                    <p>50% na assinatura do contrato e 50% na entrega final.</p>
-                </div>
-            </section>
-        </div>
+            </div>
+        </section>
     </main>
 
     <footer class="bg-black py-12 mt-16">
         <div class="container mx-auto px-8 text-center text-gray-400">
             <img src="https://raw.githubusercontent.com/Clebito2/layout/main/Logo%20live%20oficial-34.png" alt="Logo Live" class="h-20 mx-auto mb-8">
-            <p class="font-semibold text-white">Live Liderança & Vendas</p>
+            <p class="font-semibold text-white text-lg">Live Liderança & Vendas</p>
             <p class="text-sm">Alta performance começa com atitude.</p>
-            <p class="text-sm mt-2">Proposta elaborada por Cléber | cleber@liveconsultoria.com.br</p>
+            <p class="text-sm mt-4">Proposta elaborada por Cléber | cleber@liveconsultoria.com.br</p>
         </div>
     </footer>
 
 <script>
-const actionPlanData = [
-    { "step": "1", "title": "Diagnóstico e Planejamento", "duration": "2 semanas", "details": "Análise aprofundada dos processos de vendas, marketing e atendimento. Definição de metas e KPIs claros." },
-    { "step": "2", "title": "Quick Wins", "duration": "3 semanas", "details": "Implementação de ações com alto impacto e baixo esforço para gerar resultados imediatos." },
-    { "step": "3", "title": "Estruturação Comercial", "duration": "6 semanas", "details": "Desenvolvimento de funil de vendas, qualificação de leads e otimização de campanhas de marketing." },
-    { "step": "4", "title": "Expansão de Canais", "duration": "8 semanas", "details": "Estratégias para expandir para marketplaces e varejo direto, além de diversificar produtos." },
-    { "step": "5", "title": "Otimização e Fidelização", "duration": "4 semanas", "details": "Melhoria do atendimento ao cliente para aumentar a satisfação e a fidelização." }
-];
-
 document.addEventListener('DOMContentLoaded', function() {
-    const timelineContainer = document.getElementById('timeline-container');
-    if (timelineContainer) {
-        timelineContainer.innerHTML = actionPlanData.map((item, index) => {
-            const side = index % 2 === 0 ? 'timeline-left' : 'timeline-right';
-            const animation = index % 2 === 0 ? '' : 'timeline-right';
-            return `
-                <div class="timeline-container ${side} ${animation}" data-step="${item.step}">
-                    <div class="timeline-content card">
-                        <h3 class="text-xl font-bold text-live-verde">${item.title}</h3>
-                        <p class="text-md font-semibold text-white mb-3">${item.duration}</p>
-                        <p class="text-gray-300 text-sm">${item.details}</p>
-                    </div>
-                </div>
-            `;
-        }).join('');
-    }
+    const sections = document.querySelectorAll('.section-reveal');
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+
+    sections.forEach(section => {
+        observer.observe(section);
+    });
 });
 </script>
 
