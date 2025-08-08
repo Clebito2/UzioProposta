@@ -10,112 +10,155 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
-            --color-primary: #00e800;
-            --color-background: #06192a;
-            --color-card: #0d2a45;
-            --color-text: #f0f8ff;
-            --color-text-muted: #a0aec0;
-            --font-body: 'Poppins', sans-serif;
-            --font-secondary: 'Merriweather', serif;
+            --live-azul-petroleo: #06192a;
+            --live-verde-vibrante: #00e800;
+            --live-branco: #ffffff;
+            --font-poppins: 'Poppins', sans-serif;
+            --font-merriweather: 'Merriweather', serif;
         }
         body {
-            margin: 0;
-            font-family: var(--font-body);
-            background-color: var(--color-background);
-            color: var(--color-text);
-            -webkit-font-smoothing: antialiased;
-            font-size: 16px;
+            font-family: var(--font-poppins);
+            background-color: var(--live-azul-petroleo);
+            color: var(--live-branco);
+            background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
+            background-attachment: fixed; /* Adicionado para fixar a textura de fundo */
         }
-        .container {
-            max-width: 960px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-        section {
-            padding: 4rem 0;
+        .font-merriweather { font-family: var(--font-merriweather); }
+        .text-live-verde {
+            color: var(--live-verde-vibrante);
+            text-shadow: 0 0 8px rgba(0, 232, 0, 0.7);
         }
         h1, h2, h3, h4 {
             font-weight: 700;
-            color: var(--color-text);
         }
         h1 { font-size: 2.5rem; }
         h2 { font-size: 2rem; text-align: center; margin-bottom: 3rem; }
         h3 { font-size: 1.25rem; }
         h4 { font-size: 1.1rem; margin: 0; }
-        p { line-height: 1.6; color: var(--color-text-muted); }
-
-        .hero {
-            background-color: #04121f;
-            text-align: center;
-            padding: 5rem 0;
-        }
-        .hero .brand-green {
-            color: var(--color-primary);
-        }
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--color-text);
-        }
+        p { line-height: 1.6; color: #a0aec0; }
 
         .card {
-            background-color: var(--color-card);
-            padding: 2rem;
-            border-radius: 0.5rem;
-            border-left: 4px solid var(--color-primary);
+            border: 1px solid #ffffff20;
+            border-radius: 12px;
+            background-color: #0A243D;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+        .card.diagnostic {
+             border-left: 4px solid var(--live-verde-vibrante);
         }
         .card.diagnostic p {
-            font-family: var(--font-secondary);
+            font-family: var(--font-merriweather);
             font-style: italic;
             font-size: 1.1rem;
-            color: var(--color-text);
+            color: var(--live-branco);
         }
-        
-        .action-plan {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        .step {
+        .fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        /* Estilos da Timeline */
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--live-verde-vibrante);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 3px;
+            animation: grow-line 2s ease-out forwards;
+        }
+        @keyframes grow-line {
+            from { height: 0; }
+            to { height: 100%; }
+        }
+        .timeline-container {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+            opacity: 0;
+            animation: slide-in 0.6s ease-out forwards;
+        }
+        .timeline-container:nth-child(1) { animation-delay: 0.2s; }
+        .timeline-container:nth-child(2) { animation-delay: 0.4s; }
+        .timeline-container:nth-child(3) { animation-delay: 0.6s; }
+        .timeline-container:nth-child(4) { animation-delay: 0.8s; }
+        .timeline-container:nth-child(5) { animation-delay: 1.0s; }
+
+        @keyframes slide-in {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        .timeline-right { animation-name: slide-in-right; }
+        @keyframes slide-in-right {
+            from { transform: translateX(50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .timeline-container::after {
+            content: attr(data-step);
             display: flex;
-            flex-direction: column;
             align-items: center;
-            text-align: center;
-            width: 200px;
-        }
-        .step-icon {
-            width: 50px;
-            height: 50px;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--live-azul-petroleo);
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            right: -20px;
+            background-color: var(--live-azul-petroleo);
+            border: 4px solid var(--live-verde-vibrante);
+            top: 25px;
             border-radius: 50%;
-            background-color: var(--color-primary);
-            color: var(--color-background);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
+            z-index: 1;
         }
-        .step .duration {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--color-text);
+        .timeline-left { left: 0; }
+        .timeline-right { left: 50%; }
+        .timeline-right::after { left: -20px; }
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: #0A243D;
+            position: relative;
+            border-radius: 8px;
+            border: 1px solid #ffffff30;
+        }
+        @media screen and (max-width: 768px) {
+            .timeline::after { left: 31px; }
+            .timeline-container { width: 100%; padding-left: 70px; padding-right: 25px; }
+            .timeline-left, .timeline-right { left: 0%; animation-name: slide-in; }
+            .timeline-left::after, .timeline-right::after { left: 11px; }
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            background-color: var(--color-card);
+            background-color: #0A243D;
             border-radius: 0.5rem;
             overflow: hidden;
         }
         th, td {
             padding: 1rem;
             text-align: left;
-            border-bottom: 1px solid #1a3a5a;
+            border-bottom: 1px solid #06192a;
         }
         th {
-            color: var(--color-text);
+            color: var(--live-branco);
             font-weight: 600;
         }
         tbody tr:last-child td {
@@ -136,7 +179,7 @@
         }
         .check-icon {
             font-size: 1.5rem;
-            color: var(--color-primary);
+            color: var(--live-verde-vibrante);
             margin-top: -4px;
         }
 
@@ -154,14 +197,14 @@
         .total-investment .total-value {
             font-size: 3rem;
             font-weight: 700;
-            color: var(--color-primary);
+            color: var(--live-verde-vibrante);
             margin-top: 0.5rem;
         }
     </style>
 </head>
-<body class="bg-brand-dark">
+<body class="bg-live-azul-petroleo">
 
-    <header class="py-4 px-4 sm:px-6 md:px-8 fixed top-0 left-0 right-0 z-50 bg-opacity-80 backdrop-blur-sm" style="background-color: #06192a;">
+    <header class="py-4 px-4 sm:px-6 md:px-8 fixed top-0 left-0 right-0 z-50 bg-live-azul-petroleo/80 backdrop-blur-sm">
         <div class="container mx-auto flex justify-between items-center">
             <img src="https://raw.githubusercontent.com/Clebito2/layout/main/Logo%20live%20oficial-36.png" alt="Logo Live Liderança & Vendas" class="h-12">
             <p class="hidden md:block text-right text-gray-300">Proposta para: Uzio</p>
@@ -169,319 +212,110 @@
     </header>
 
     <main class="pt-24">
-        <section class="hero">
+        <section class="py-20 md:py-28 text-center fade-in">
             <div class="container">
-                <h1>Plano de Ação e Proposta para <span class="brand-green">Uzio</span></h1>
-                <p>Apresentado em: 08 de agosto de 2025</p>
+                <h1>Plano de Ação e Proposta para <span class="text-live-verde">Uzio</span></h1>
+                <p class="text-xl mt-2">Apresentado em: 08 de agosto de 2025</p>
             </div>
         </section>
 
         <div class="container">
-            <section id="diagnosis">
-                <h2>Diagnóstico Estratégico</h2>
-                <div class="card diagnostic">
+            <section id="diagnosis" class="fade-in">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl">Diagnóstico Estratégico</h2>
+                </div>
+                <div class="card diagnostic p-8">
                     <p>"A Uzio enfrenta desafios na eficiência de vendas, com oportunidades perdidas devido à falta de acompanhamento de clientes e propostas. A empresa busca expandir suas linhas de produtos e canais de venda, explorando nichos como marketplace e varejo direto ao consumidor. Há uma necessidade de qualificar melhor a carteira de clientes e otimizar o atendimento, além de estruturar o comercial e o marketing para alavancar o crescimento e melhorar a margem de faturamento. A empresa reconhece a importância de alinhar estratégias, processos e pessoas para alcançar resultados sustentáveis e aproveitar as oportunidades de mercado."</p>
                 </div>
             </section>
 
-            <section id="action-plan">
-                <h2>Nosso Plano de Ação (Macro)</h2>
-                <div class="action-plan">
-                    
-                    <div class="step">
-                        <div class="step-icon">1</div>
-                        <div class="step-content">
-                            <h3>Diagnóstico Detalhado e Planejamento Estratégico</h3>
-                            <p class="duration">2 semanas</p>
-                            <p>Análise aprofundada dos processos de vendas, marketing e atendimento ao cliente. Definição de metas e KPIs claros.</p>
-                        </div>
-                    </div>
-                
-                    <div class="step">
-                        <div class="step-icon">2</div>
-                        <div class="step-content">
-                            <h3>Implementação de Melhorias Rápidas (Quick Wins)</h3>
-                            <p class="duration">3 semanas</p>
-                            <p>Implementação de ações com alto impacto e baixo esforço para gerar resultados imediatos.</p>
-                        </div>
-                    </div>
-                
-                    <div class="step">
-                        <div class="step-icon">3</div>
-                        <div class="step-content">
-                            <h3>Estruturação Comercial e de Marketing</h3>
-                            <p class="duration">6 semanas</p>
-                            <p>Desenvolvimento de processos de vendas, qualificação de leads, criação de funil de vendas e otimização de campanhas de marketing.</p>
-                        </div>
-                    </div>
-                
-                    <div class="step">
-                        <div class="step-icon">4</div>
-                        <div class="step-content">
-                            <h3>Expansão de Canais de Venda e Produtos</h3>
-                            <p class="duration">8 semanas</p>
-                            <p>Implementação de estratégias para expandir para marketplaces e varejo direto ao consumidor, além de diversificar as linhas de produtos.</p>
-                        </div>
-                    </div>
-                
-                    <div class="step">
-                        <div class="step-icon">5</div>
-                        <div class="step-content">
-                            <h3>Otimização do Atendimento ao Cliente e Fidelização</h3>
-                            <p class="duration">4 semanas</p>
-                            <p>Implementação de processos para melhorar o atendimento ao cliente, aumentar a satisfação e fidelização.</p>
-                        </div>
-                    </div>
-                
+            <section id="action-plan" class="py-16 md:py-24 bg-black/20 fade-in">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl">Nosso Plano de Ação</h2>
+                     <p class="mt-2 text-gray-400">Uma visão clara das fases do projeto e suas respectivas durações.</p>
+                </div>
+                <div id="timeline-container" class="timeline">
+                    <!-- O conteúdo do cronograma visual será injetado aqui -->
                 </div>
             </section>
 
-            <section id="schedule">
+            <section id="schedule" class="fade-in">
                 <h2>Cronograma de Entregáveis</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Etapa</th>
-                            <th>Entregável</th>
-                            <th>Responsável</th>
-                            <th class="text-right">Prazo</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                        <tr>
-                            <td>1</td>
-                            <td>Relatório de Diagnóstico de Vendas e Marketing</td>
-                            <td>Consultor Líder</td>
-                            <td class="text-right">7 dias</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>1</td>
-                            <td>Workshop de Alinhamento Estratégico com a Diretoria</td>
-                            <td>Consultor Líder</td>
-                            <td class="text-right">2 dias</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>2</td>
-                            <td>Implementação de CRM Simplificado para Acompanhamento de Clientes</td>
-                            <td>Especialista em CRM</td>
-                            <td class="text-right">7 dias</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>2</td>
-                            <td>Criação de Script de Abordagem e Qualificação de Leads</td>
-                            <td>Consultor de Vendas</td>
-                            <td class="text-right">5 dias</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>3</td>
-                            <td>Desenvolvimento de Funil de Vendas e Automação de Marketing</td>
-                            <td>Especialista em Marketing Digital</td>
-                            <td class="text-right">15 dias</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>3</td>
-                            <td>Treinamento da Equipe Comercial em Novas Técnicas de Venda</td>
-                            <td>Consultor de Vendas</td>
-                            <td class="text-right">5 dias</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>4</td>
-                            <td>Pesquisa de Mercado e Análise de Viabilidade para Novos Produtos</td>
-                            <td>Analista de Mercado</td>
-                            <td class="text-right">10 dias</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>4</td>
-                            <td>Implementação de Estratégia de Vendas em Marketplace (Ex: Mercado Livre)</td>
-                            <td>Especialista em Marketplace</td>
-                            <td class="text-right">15 dias</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>5</td>
-                            <td>Implementação de Sistema de Feedback e Avaliação de Satisfação do Cliente</td>
-                            <td>Especialista em Atendimento ao Cliente</td>
-                            <td class="text-right">10 dias</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>5</td>
-                            <td>Criação de Programa de Fidelidade e Recompensa para Clientes</td>
-                            <td>Consultor de Marketing</td>
-                            <td class="text-right">7 dias</td>
-                        </tr>
-                    
-                    </tbody>
-                </table>
+                <div class="card p-4">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Etapa</th>
+                                <th>Entregável</th>
+                                <th>Responsável</th>
+                                <th class="text-right">Prazo</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td>Relatório de Diagnóstico de Vendas e Marketing</td><td>Consultor Líder</td><td class="text-right">7 dias</td></tr>
+                            <tr><td>1</td><td>Workshop de Alinhamento Estratégico com a Diretoria</td><td>Consultor Líder</td><td class="text-right">2 dias</td></tr>
+                            <tr><td>2</td><td>Implementação de CRM Simplificado</td><td>Especialista em CRM</td><td class="text-right">7 dias</td></tr>
+                            <tr><td>2</td><td>Criação de Script de Abordagem e Qualificação</td><td>Consultor de Vendas</td><td class="text-right">5 dias</td></tr>
+                            <tr><td>3</td><td>Desenvolvimento de Funil de Vendas e Automação</td><td>Especialista em Marketing Digital</td><td class="text-right">15 dias</td></tr>
+                            <tr><td>3</td><td>Treinamento da Equipe Comercial</td><td>Consultor de Vendas</td><td class="text-right">5 dias</td></tr>
+                            <tr><td>4</td><td>Pesquisa de Mercado e Viabilidade de Produtos</td><td>Analista de Mercado</td><td class="text-right">10 dias</td></tr>
+                            <tr><td>4</td><td>Implementação de Estratégia em Marketplace</td><td>Especialista em Marketplace</td><td class="text-right">15 dias</td></tr>
+                            <tr><td>5</td><td>Implementação de Sistema de Feedback do Cliente</td><td>Especialista em Atendimento</td><td class="text-right">10 dias</td></tr>
+                            <tr><td>5</td><td>Criação de Programa de Fidelidade</td><td>Consultor de Marketing</td><td class="text-right">7 dias</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </section>
 
-            <section id="details">
+            <section id="details" class="fade-in">
                 <h2>Detalhes da Parceria</h2>
                 
                 <h3>Escopo Detalhado</h3>
-                <div class="card" style="margin-top: 1rem;">
+                <div class="card p-6">
                     <ul class="scope-list">
-                        
-                        <li>
-                            <div class="check-icon">✓</div>
-                            <div>
-                                <h4>Relatório de Diagnóstico de Vendas e Marketing</h4>
-                                <p>Responsável: Consultor Líder | Prazo: 7 dias</p>
-                            </div>
-                        </li>
-                    
-                        <li>
-                            <div class="check-icon">✓</div>
-                            <div>
-                                <h4>Workshop de Alinhamento Estratégico com a Diretoria</h4>
-                                <p>Responsável: Consultor Líder | Prazo: 2 dias</p>
-                            </div>
-                        </li>
-                    
-                        <li>
-                            <div class="check-icon">✓</div>
-                            <div>
-                                <h4>Implementação de CRM Simplificado para Acompanhamento de Clientes</h4>
-                                <p>Responsável: Especialista em CRM | Prazo: 7 dias</p>
-                            </div>
-                        </li>
-                    
-                        <li>
-                            <div class="check-icon">✓</div>
-                            <div>
-                                <h4>Criação de Script de Abordagem e Qualificação de Leads</h4>
-                                <p>Responsável: Consultor de Vendas | Prazo: 5 dias</p>
-                            </div>
-                        </li>
-                    
-                        <li>
-                            <div class="check-icon">✓</div>
-                            <div>
-                                <h4>Desenvolvimento de Funil de Vendas e Automação de Marketing</h4>
-                                <p>Responsável: Especialista em Marketing Digital | Prazo: 15 dias</p>
-                            </div>
-                        </li>
-                    
-                        <li>
-                            <div class="check-icon">✓</div>
-                            <div>
-                                <h4>Treinamento da Equipe Comercial em Novas Técnicas de Venda</h4>
-                                <p>Responsável: Consultor de Vendas | Prazo: 5 dias</p>
-                            </div>
-                        </li>
-                    
-                        <li>
-                            <div class="check-icon">✓</div>
-                            <div>
-                                <h4>Pesquisa de Mercado e Análise de Viabilidade para Novos Produtos</h4>
-                                <p>Responsável: Analista de Mercado | Prazo: 10 dias</p>
-                            </div>
-                        </li>
-                    
-                        <li>
-                            <div class="check-icon">✓</div>
-                            <div>
-                                <h4>Implementação de Estratégia de Vendas em Marketplace (Ex: Mercado Livre)</h4>
-                                <p>Responsável: Especialista em Marketplace | Prazo: 15 dias</p>
-                            </div>
-                        </li>
-                    
-                        <li>
-                            <div class="check-icon">✓</div>
-                            <div>
-                                <h4>Implementação de Sistema de Feedback e Avaliação de Satisfação do Cliente</h4>
-                                <p>Responsável: Especialista em Atendimento ao Cliente | Prazo: 10 dias</p>
-                            </div>
-                        </li>
-                    
-                        <li>
-                            <div class="check-icon">✓</div>
-                            <div>
-                                <h4>Criação de Programa de Fidelidade e Recompensa para Clientes</h4>
-                                <p>Responsável: Consultor de Marketing | Prazo: 7 dias</p>
-                            </div>
-                        </li>
-                    
+                        <li><div class="check-icon">✓</div><div><h4>Relatório de Diagnóstico de Vendas e Marketing</h4><p>Responsável: Consultor Líder | Prazo: 7 dias</p></div></li>
+                        <li><div class="check-icon">✓</div><div><h4>Workshop de Alinhamento Estratégico</h4><p>Responsável: Consultor Líder | Prazo: 2 dias</p></div></li>
+                        <li><div class="check-icon">✓</div><div><h4>Implementação de CRM Simplificado</h4><p>Responsável: Especialista em CRM | Prazo: 7 dias</p></div></li>
+                        <li><div class="check-icon">✓</div><div><h4>Criação de Script de Abordagem e Qualificação</h4><p>Responsável: Consultor de Vendas | Prazo: 5 dias</p></div></li>
+                        <li><div class="check-icon">✓</div><div><h4>Desenvolvimento de Funil de Vendas e Automação</h4><p>Responsável: Especialista em Marketing Digital | Prazo: 15 dias</p></div></li>
+                        <li><div class="check-icon">✓</div><div><h4>Treinamento da Equipe Comercial</h4><p>Responsável: Consultor de Vendas | Prazo: 5 dias</p></div></li>
+                        <li><div class="check-icon">✓</div><div><h4>Pesquisa de Mercado e Viabilidade de Produtos</h4><p>Responsável: Analista de Mercado | Prazo: 10 dias</p></div></li>
+                        <li><div class="check-icon">✓</div><div><h4>Implementação de Estratégia em Marketplace</h4><p>Responsável: Especialista em Marketplace | Prazo: 15 dias</p></div></li>
+                        <li><div class="check-icon">✓</div><div><h4>Implementação de Sistema de Feedback do Cliente</h4><p>Responsável: Especialista em Atendimento | Prazo: 10 dias</p></div></li>
+                        <li><div class="check-icon">✓</div><div><h4>Criação de Programa de Fidelidade</h4><p>Responsável: Consultor de Marketing | Prazo: 7 dias</p></div></li>
                     </ul>
                 </div>
                 
                 <h3 style="margin-top: 3rem;">Investimento</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Entregável</th>
-                            <th class="text-right">Valor</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                        <tr>
-                            <td>Relatório de Diagnóstico de Vendas e Marketing</td>
-                            <td class="text-right">R$ 6.000,00</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>Workshop de Alinhamento Estratégico com a Diretoria</td>
-                            <td class="text-right">R$ 3.000,00</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>Implementação de CRM Simplificado para Acompanhamento de Clientes</td>
-                            <td class="text-right">R$ 7.000,00</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>Criação de Script de Abordagem e Qualificação de Leads</td>
-                            <td class="text-right">R$ 3.000,00</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>Desenvolvimento de Funil de Vendas e Automação de Marketing</td>
-                            <td class="text-right">R$ 12.000,00</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>Treinamento da Equipe Comercial em Novas Técnicas de Venda</td>
-                            <td class="text-right">R$ 4.000,00</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>Pesquisa de Mercado e Análise de Viabilidade para Novos Produtos</td>
-                            <td class="text-right">R$ 8.000,00</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>Implementação de Estratégia de Vendas em Marketplace (Ex: Mercado Livre)</td>
-                            <td class="text-right">R$ 15.000,00</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>Implementação de Sistema de Feedback e Avaliação de Satisfação do Cliente</td>
-                            <td class="text-right">R$ 9.000,00</td>
-                        </tr>
-                    
-                        <tr>
-                            <td>Criação de Programa de Fidelidade e Recompensa para Clientes</td>
-                            <td class="text-right">R$ 6.000,00</td>
-                        </tr>
-                    
-                    </tbody>
-                </table>
+                <div class="card p-4">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Entregável</th>
+                                <th class="text-right">Valor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Relatório de Diagnóstico de Vendas e Marketing</td><td class="text-right">R$ 6.000,00</td></tr>
+                            <tr><td>Workshop de Alinhamento Estratégico</td><td class="text-right">R$ 3.000,00</td></tr>
+                            <tr><td>Implementação de CRM Simplificado</td><td class="text-right">R$ 7.000,00</td></tr>
+                            <tr><td>Criação de Script de Abordagem e Qualificação</td><td class="text-right">R$ 3.000,00</td></tr>
+                            <tr><td>Desenvolvimento de Funil de Vendas e Automação</td><td class="text-right">R$ 12.000,00</td></tr>
+                            <tr><td>Treinamento da Equipe Comercial</td><td class="text-right">R$ 4.000,00</td></tr>
+                            <tr><td>Pesquisa de Mercado e Viabilidade de Produtos</td><td class="text-right">R$ 8.000,00</td></tr>
+                            <tr><td>Implementação de Estratégia em Marketplace</td><td class="text-right">R$ 15.000,00</td></tr>
+                            <tr><td>Implementação de Sistema de Feedback do Cliente</td><td class="text-right">R$ 9.000,00</td></tr>
+                            <tr><td>Criação de Programa de Fidelidade</td><td class="text-right">R$ 6.000,00</td></tr>
+                        </tbody>
+                    </table>
+                </div>
                 
-                <div class="total-investment">
+                <div class="total-investment card">
                     <p>Valor Total do Projeto</p>
                     <p class="total-value">R$ 73.000,00</p>
                 </div>
 
-                <div>
+                <div class="card p-6">
                     <h3>Condições de Pagamento:</h3>
                     <p>50% na assinatura do contrato e 50% na entrega final.</p>
                 </div>
@@ -489,14 +323,43 @@
         </div>
     </main>
 
-    <footer class="bg-black py-12">
-        <div class="container mx-auto px-8 text-center text-gray-500">
+    <footer class="bg-black py-12 mt-16">
+        <div class="container mx-auto px-8 text-center text-gray-400">
             <img src="https://raw.githubusercontent.com/Clebito2/layout/main/Logo%20live%20oficial-34.png" alt="Logo Live" class="h-20 mx-auto mb-8">
-            <p>Live Liderança & Vendas</p>
+            <p class="font-semibold text-white">Live Liderança & Vendas</p>
             <p class="text-sm">Alta performance começa com atitude.</p>
             <p class="text-sm mt-2">Proposta elaborada por Cléber | cleber@liveconsultoria.com.br</p>
         </div>
     </footer>
+
+<script>
+const actionPlanData = [
+    { "step": "1", "title": "Diagnóstico e Planejamento", "duration": "2 semanas", "details": "Análise aprofundada dos processos de vendas, marketing e atendimento. Definição de metas e KPIs claros." },
+    { "step": "2", "title": "Quick Wins", "duration": "3 semanas", "details": "Implementação de ações com alto impacto e baixo esforço para gerar resultados imediatos." },
+    { "step": "3", "title": "Estruturação Comercial", "duration": "6 semanas", "details": "Desenvolvimento de funil de vendas, qualificação de leads e otimização de campanhas de marketing." },
+    { "step": "4", "title": "Expansão de Canais", "duration": "8 semanas", "details": "Estratégias para expandir para marketplaces e varejo direto, além de diversificar produtos." },
+    { "step": "5", "title": "Otimização e Fidelização", "duration": "4 semanas", "details": "Melhoria do atendimento ao cliente para aumentar a satisfação e a fidelização." }
+];
+
+document.addEventListener('DOMContentLoaded', function() {
+    const timelineContainer = document.getElementById('timeline-container');
+    if (timelineContainer) {
+        timelineContainer.innerHTML = actionPlanData.map((item, index) => {
+            const side = index % 2 === 0 ? 'timeline-left' : 'timeline-right';
+            const animation = index % 2 === 0 ? '' : 'timeline-right';
+            return `
+                <div class="timeline-container ${side} ${animation}" data-step="${item.step}">
+                    <div class="timeline-content card">
+                        <h3 class="text-xl font-bold text-live-verde">${item.title}</h3>
+                        <p class="text-md font-semibold text-white mb-3">${item.duration}</p>
+                        <p class="text-gray-300 text-sm">${item.details}</p>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    }
+});
+</script>
 
 </body>
 </html>
