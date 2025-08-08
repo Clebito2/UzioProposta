@@ -7,184 +7,420 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         :root {
-            --live-azul-petroleo: #06192a;
-            --live-verde-vibrante: #00e800;
-            --live-branco: #ffffff;
-            --font-poppins: 'Poppins', sans-serif;
-            --font-merriweather: 'Merriweather', serif;
+            --color-primary: #00e800;
+            --color-background: #06192a;
+            --color-card: #0d2a45;
+            --color-text: #f0f8ff;
+            --color-text-muted: #a0aec0;
+            --font-body: 'Poppins', sans-serif;
+            --font-secondary: 'Merriweather', serif;
         }
         body {
-            font-family: var(--font-poppins);
-            background-color: var(--live-azul-petroleo);
-            color: var(--live-branco);
+            margin: 0;
+            font-family: var(--font-body);
+            background-color: var(--color-background);
+            /* Adicionando a textura de fundo fixa */
             background-image: url('https://www.transparenttextures.com/patterns/cubes.png');
             background-attachment: fixed;
+            color: var(--color-text);
+            -webkit-font-smoothing: antialiased;
+            font-size: 16px;
         }
-        .font-merriweather { font-family: var(--font-merriweather); }
-        .text-live-verde {
-            color: var(--live-verde-vibrante);
-            /* text-shadow: 0 0 10px rgba(0, 232, 0, 0.7); */ /* Brilho removido */
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 0 1rem;
         }
-        .card {
-            border: 1px solid #ffffff20;
-            border-radius: 12px;
-            background-color: #0A243D;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        section {
+            padding: 4rem 0;
+            background-color: rgba(6, 25, 42, 0.9); /* Fundo semi-transparente para seções */
+        }
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            color: var(--color-text);
+        }
+        h1 { font-size: 2.5rem; }
+        h2 { font-size: 2rem; text-align: center; margin-bottom: 3rem; }
+        h3 { font-size: 1.25rem; }
+        h4 { font-size: 1.1rem; margin: 0; }
+        p { line-height: 1.6; color: var(--color-text-muted); }
+
+        .hero {
+            /* Adicionando imagem de fundo ao cabeçalho com overlay */
+            background-image: linear-gradient(rgba(4, 18, 31, 0.85), rgba(4, 18, 31, 0.85)), url('https://images.unsplash.com/photo-1554494583-c4e16298348c?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            padding: 6rem 0;
+            position: relative;
+        }
+        .hero .brand-green {
+            color: var(--color-primary);
+        }
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--color-text);
+        }
+
+        /* --- Estilos das Abas --- */
+        .tab-container {
             width: 100%;
-            max-width: 800px; /* Largura máxima para os cards */
-            margin-left: auto;
-            margin-right: auto;
+            background-color: #04121f;
+            padding-top: 1rem;
         }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+        .tabs {
+            display: flex;
+            justify-content: center;
+            border-bottom: 2px solid var(--color-card);
         }
-        .section-reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 1s ease-out;
+        .tab-button {
+            padding: 1rem 2rem;
+            cursor: pointer;
+            background-color: transparent;
+            border: none;
+            color: var(--color-text-muted);
+            font-family: var(--font-body);
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border-bottom: 4px solid transparent;
+            margin-bottom: -2px; /* Alinha com a borda do container */
         }
-        .section-reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .tab-button:hover {
+            color: var(--color-text);
         }
-        .table-container {
-            border-radius: 12px;
+        .tab-button.active {
+            color: var(--color-primary);
+            border-bottom-color: var(--color-primary);
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        /* --- Fim dos Estilos das Abas --- */
+
+        .card {
+            background-color: var(--color-card);
+            padding: 2rem;
+            border-radius: 0.5rem;
+            border-left: 4px solid var(--color-primary);
+        }
+        .card.diagnostic p {
+            font-family: var(--font-secondary);
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--color-text);
+        }
+        
+        .action-plan {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 200px;
+        }
+        .step-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--color-primary);
+            color: var(--color-background);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .step .duration {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--color-text);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: var(--color-card);
+            border-radius: 0.5rem;
             overflow: hidden;
+        }
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #1a3a5a;
+        }
+        th {
+            color: var(--color-text);
+            font-weight: 600;
+        }
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+        .text-right { text-align: right; }
+        
+        ul.scope-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        ul.scope-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .check-icon, .calendar-icon {
+            font-size: 1.5rem;
+            color: var(--color-primary);
+            margin-top: -4px;
+        }
+
+        .total-investment {
+            text-align: center;
+            background-color: #04121f;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            margin: 2rem 0;
+        }
+        .total-investment p {
+            margin: 0;
+            font-size: 1.25rem;
+        }
+        .total-investment .total-value {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-top: 0.5rem;
+        }
+        .footer {
+            background-color: #000;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        .footer img {
+            max-width: 200px;
+            margin-bottom: 2rem;
+        }
+        .footer p {
+            color: #777;
+            margin: 0.25rem;
+        }
+        .final-investment-summary {
+            background-color: var(--color-card);
+            padding: 2.5rem;
+            border-radius: 0.5rem;
+            text-align: center;
+        }
+        .final-investment-summary h3 {
+            font-size: 1.5rem;
+            margin-top: 0;
+        }
+        .final-investment-summary p {
+            font-size: 1.1rem;
+            color: var(--color-text);
+        }
+        .final-investment-summary .grand-total {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin: 1rem 0;
         }
     </style>
 </head>
-<body class="bg-live-azul-petroleo">
+<body>
 
-    <header class="py-4 px-4 sm:px-6 md:px-8 fixed top-0 left-0 right-0 z-50 bg-live-azul-petroleo/80 backdrop-blur-sm">
-        <div class="container mx-auto flex justify-between items-center">
-            <img src="https://raw.githubusercontent.com/Clebito2/layout/main/Logo%20live%20oficial-36.png" alt="Logo Live Liderança & Vendas" class="h-12">
-            <p class="hidden md:block text-right text-gray-300 font-bold">Proposta para: UZIO</p>
+    <header class="hero">
+        <div class="container">
+            <h1>Plano de Ação e Proposta para <span class="brand-green">Uzio</span></h1>
         </div>
     </header>
 
-    <main class="pt-24">
-        <section class="py-20 md:py-32 text-center section-reveal">
-            <div class="container mx-auto px-4">
-                <h1 class="text-4xl md:text-6xl font-bold leading-tight">
-                    Plano de Ação e Proposta para <br class="hidden md:block"> <span class="text-live-verde">UZIO</span>
-                </h1>
-                <p class="text-xl mt-4 text-gray-300">Apresentado em: 08 de Agosto de 2025</p>
+    <main>
+        <div class="tab-container">
+            <div class="tabs container">
+                <button class="tab-button active" onclick="openTab(event, 'Luiz')">Estratégia & Diagnóstico (Luiz)</button>
+                <button class="tab-button" onclick="openTab(event, 'Daniel')">Execução & Treinamento (Daniel)</button>
             </div>
-        </section>
+        </div>
 
-        <section class="py-16 md:py-20 text-center section-reveal">
-            <div class="container mx-auto px-4">
-                <h2 class="text-4xl md:text-5xl font-bold mb-12">Diagnóstico Estratégico</h2>
-                <div class="card p-8 md:p-10 text-left">
-                    <p class="font-merriweather italic text-xl md:text-2xl text-gray-200 leading-relaxed">
-                        "A Uzio enfrenta desafios na eficiência de vendas, com oportunidades perdidas devido à falta de acompanhamento de clientes e propostas. A empresa busca expandir suas linhas de produtos e canais de venda, explorando nichos como marketplace e varejo direto ao consumidor. Há uma necessidade de qualificar melhor a carteira de clientes e otimizar o atendimento, além de estruturar o comercial e o marketing para alavancar o crescimento e melhorar a margem de faturamento. A empresa reconhece a importância de alinhar estratégias, processos e pessoas para alcançar resultados sustentáveis e aproveitar as oportunidades de mercado."
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <section class="py-16 md:py-20 text-center section-reveal">
-            <div class="container mx-auto px-4">
-                <h2 class="text-4xl md:text-5xl font-bold mb-12">Nosso Plano de Ação (Macro)</h2>
-                <div class="card p-8 md:p-10 text-left space-y-8">
-                    <div>
-                        <h3 class="text-2xl md:text-3xl font-bold text-live-verde">1. Diagnóstico e Planejamento</h3>
-                        <p class="text-lg text-gray-300 mt-2">Análise aprofundada dos processos de vendas, marketing e atendimento. Definição de metas e KPIs claros. <strong class="text-white">(Prazo: 2 semanas)</strong></p>
-                    </div>
-                    <hr class="border-gray-700">
-                    <div>
-                        <h3 class="text-2xl md:text-3xl font-bold text-live-verde">2. Implementação de Quick Wins</h3>
-                        <p class="text-lg text-gray-300 mt-2">Implementação de ações com alto impacto e baixo esforço para gerar resultados imediatos. <strong class="text-white">(Prazo: 3 semanas)</strong></p>
-                    </div>
-                    <hr class="border-gray-700">
-                    <div>
-                        <h3 class="text-2xl md:text-3xl font-bold text-live-verde">3. Estruturação Comercial e Marketing</h3>
-                        <p class="text-lg text-gray-300 mt-2">Desenvolvimento de funil de vendas, qualificação de leads e otimização de campanhas. <strong class="text-white">(Prazo: 6 semanas)</strong></p>
-                    </div>
-                     <hr class="border-gray-700">
-                    <div>
-                        <h3 class="text-2xl md:text-3xl font-bold text-live-verde">4. Expansão de Canais e Produtos</h3>
-                        <p class="text-lg text-gray-300 mt-2">Estratégias para expandir para marketplaces e varejo direto, além de diversificar as linhas de produtos. <strong class="text-white">(Prazo: 8 semanas)</strong></p>
-                    </div>
-                     <hr class="border-gray-700">
-                    <div>
-                        <h3 class="text-2xl md:text-3xl font-bold text-live-verde">5. Otimização do Atendimento</h3>
-                        <p class="text-lg text-gray-300 mt-2">Melhoria do atendimento ao cliente para aumentar a satisfação e a fidelização. <strong class="text-white">(Prazo: 4 semanas)</strong></p>
+        <!-- Conteúdo da Aba do Luiz -->
+        <div id="Luiz" class="tab-content active">
+            <section id="diagnosis">
+                <div class="container">
+                    <h2>Diagnóstico Estratégico</h2>
+                    <div class="card diagnostic">
+                        <p>"A Uzio enfrenta desafios na estruturação do comercial, na gestão de leads e na eficiência da produção. Oportunidades de crescimento incluem a expansão para novos nichos de mercado, como marketplace e varejo, e o fortalecimento da presença regional. A empresa precisa qualificar melhor sua carteira de clientes e otimizar seus processos internos para aumentar a lucratividade e a recorrência de vendas."</p>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="py-16 md:py-20 text-center section-reveal">
-            <div class="container mx-auto px-4">
-                <h2 class="text-4xl md:text-5xl font-bold mb-12">Detalhes da Parceria</h2>
-                <div class="card p-8 md:p-10">
-                    <h3 class="text-3xl font-bold mb-6 text-live-verde">Escopo e Investimento</h3>
-                    <div class="table-container">
-                        <table class="w-full text-left text-lg">
-                            <thead class="bg-black/40">
-                                <tr>
-                                    <th class="p-4">Entregável</th>
-                                    <th class="p-4 text-right">Valor</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-gray-300">
-                                <tr class="border-b border-gray-700"><td>Relatório de Diagnóstico de Vendas e Marketing</td><td class="text-right font-bold">R$ 6.000,00</td></tr>
-                                <tr class="border-b border-gray-700"><td>Workshop de Alinhamento Estratégico</td><td class="text-right font-bold">R$ 3.000,00</td></tr>
-                                <tr class="border-b border-gray-700"><td>Criação de Script de Abordagem e Qualificação</td><td class="text-right font-bold">R$ 3.000,00</td></tr>
-                                <tr class="border-b border-gray-700"><td>Desenvolvimento de Funil de Vendas e Automação</td><td class="text-right font-bold">R$ 12.000,00</td></tr>
-                                <tr class="border-b border-gray-700"><td>Treinamento da Equipe Comercial</td><td class="text-right font-bold">R$ 4.000,00</td></tr>
-                                <tr class="border-b border-gray-700"><td>Pesquisa de Mercado e Viabilidade de Produtos</td><td class="text-right font-bold">R$ 8.000,00</td></tr>
-                                <tr class="border-b border-gray-700"><td>Implementação de Estratégia em Marketplace</td><td class="text-right font-bold">R$ 15.000,00</td></tr>
-                                <tr class="border-b border-gray-700"><td>Implementação de Sistema de Feedback do Cliente</td><td class="text-right font-bold">R$ 9.000,00</td></tr>
-                                <tr><td>Criação de Programa de Fidelidade</td><td class="text-right font-bold">R$ 6.000,00</td></tr>
-                            </tbody>
-                        </table>
+            <section id="action-plan">
+                <div class="container">
+                    <h2>Plano de Ação Macro (Estratégia)</h2>
+                    <div class="action-plan">
+                        <div class="step">
+                            <div class="step-icon">1</div>
+                            <div class="step-content">
+                                <h3>Diagnóstico e Mapeamento</h3>
+                                <p class="duration">2 semanas</p>
+                                <p>Análise da estrutura comercial, gestão de leads, processos e oportunidades de mercado.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-icon">2</div>
+                            <div class="step-content">
+                                <h3>Otimização de Processos</h3>
+                                <p class="duration">6 semanas</p>
+                                <p>Desenvolvimento de soluções para otimizar a gestão de leads e produção.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-icon">3</div>
+                            <div class="step-content">
+                                <h3>Expansão de Mercado</h3>
+                                <p class="duration">4 semanas</p>
+                                <p>Estratégias para expansão para novos nichos e fortalecimento regional.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-icon">4</div>
+                            <div class="step-content">
+                                <h3>Análise de Performance</h3>
+                                <p class="duration">2 semanas</p>
+                                <p>Implementação de métricas para otimização contínua e aumento da lucratividade.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="details-luiz">
+                <div class="container">
+                    <h2>Investimento Estratégico (Luiz)</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Entregável</th>
+                                <th class="text-right">Valor</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr> <td>Relatório de Diagnóstico da Estrutura Comercial</td> <td class="text-right">R$ 6.000,00</td> </tr>
+                            <tr> <td>Mapeamento dos Processos de Gestão de Leads</td> <td class="text-right">R$ 4.000,00</td> </tr>
+                            <tr> <td>Plano de Expansão para Novos Nichos de Mercado</td> <td class="text-right">R$ 15.000,00</td> </tr>
+                            <tr> <td>Estratégia de Fortalecimento da Presença Regional</td> <td class="text-right">R$ 10.000,00</td> </tr>
+                            <tr> <td>Implementação de Métricas de Desempenho</td> <td class="text-right">R$ 7.000,00</td> </tr>
+                            <tr> <td>Relatório de Otimização Contínua</td> <td class="text-right">R$ 5.000,00</td> </tr>
+                        </tbody>
+                    </table>
+                    <div class="total-investment">
+                        <p>Valor Total da Estratégia</p>
+                        <p class="total-value">R$ 47.000,00</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Conteúdo da Aba do Daniel -->
+        <div id="Daniel" class="tab-content">
+            <section id="daniels-deliverables">
+                <div class="container">
+                    <h2>Plano de Execução e Entregáveis (Daniel)</h2>
+                    <div class="card" style="margin-top: 1rem;">
+                        <h3 style="margin-top:0; margin-bottom: 2rem;">Ações de 2025</h3>
+                        <ul class="scope-list">
+                            <li> <div class="calendar-icon">📅</div> <div> <h4>Reunião com gestores para entendimento do processo comercial</h4> <p>Período: 09/07/2025</p> </div> </li>
+                            <li> <div class="calendar-icon">📅</div> <div> <h4>Observação prática do processo de vendas</h4> <p>Período: 16/07/2025 a 21/07/2025</p> </div> </li>
+                            <li> <div class="calendar-icon">📅</div> <div> <h4>Apresentação de melhorias, METAS SMART e alinhamento</h4> <p>Período: 28/07/2025</p> </div> </li>
+                            <li> <div class="calendar-icon">📅</div> <div> <h4>Pesquisa, observação e testes de roteiro comercial</h4> <p>Período: 16/08/2025 a 21/08/2025</p> </div> </li>
+                            <li> <div class="calendar-icon">📅</div> <div> <h4>Apresentação do fluxograma e roteiro inicial de vendas</h4> <p>Período: 28/08/2025</p> </div> </li>
+                            <li> <div class="calendar-icon">📅</div> <div> <h4>Ajustes de processos e documentos</h4> <p>Período: 04/09/2025</p> </div> </li>
+                            <li> <div class="calendar-icon">📅</div> <div> <h4>Treinamento: Prospecção e Leads Inbound</h4> <p>Período: 11/09/2025</p> </div> </li>
+                            <li> <div class="calendar-icon">📅</div> <div> <h4>Treinamento: Vendas de Alto Impacto</h4> <p>Período: 18/09/2025</p> </div> </li>
+                            <li> <div class="calendar-icon">📅</div> <div> <h4>Acompanhamento prático: prospecção</h4> <p>Período: 02/10/2025 a 07/10/2025</p> </div> </li>
+                            <li> <div class="calendar-icon">📅</div> <div> <h4>Acompanhamento prático: orçamento e negociação</h4> <p>Período: 14/10/2025 a 19/10/2025</p> </div> </li>
+                            <li> <div class="calendar-icon">📅</div> <div> <h4>Acompanhamento prático: Dia de vendedor</h4> <p>Período: 26/10/2025 a 31/10/2025</p> </div> </li>
+                        </ul>
                     </div>
 
-                    <div class="bg-black/40 rounded-lg p-8 mt-10">
-                         <p class="text-2xl text-gray-300">Valor Total do Projeto</p>
-                         <p class="text-5xl font-bold text-live-verde mt-2">R$ 66.000,00</p>
-                         <p class="text-xl text-gray-300 mt-6"><strong class="text-white">Condições de Pagamento:</strong> 50% na assinatura do contrato e 50% na entrega final.</p>
+                    <div class="card" style="margin-top: 3rem;">
+                        <h3 style="margin-top:0; margin-bottom: 2rem;">Ações de 2026</h3>
+                        <ul class="scope-list">
+                            <li> <div class="calendar-icon">📅</div> <div> <h4>Elaboração de Dashboard para gestão comercial</h4> <p>Período: 03/01/2026 a 08/01/2026</p> </div> </li>
+                            <li> <div class="calendar-icon">📅</div> <div> <h4>Treinamento de Dashboard e gestão por indicadores</h4> <p>Período: 15/01/2026 e 22/01/2026</p> </div> </li>
+                            <li> <div class="calendar-icon">📅</div> <div> <h4>Reuniões de rotina (Pipeline e Diretoria)</h4> <p>Período: Início em 29/01/2026</p> </div> </li>
+                            <li> <div class="calendar-icon">📅</div> <div> <h4>Acompanhamento geral de vendas</h4> <p>Período: 12/02/2026 a 17/02/2026</p> </div> </li>
+                            <li> <div class="calendar-icon">📅</div> <div> <h4>Elaboração do Ramp-up de Treinamento</h4> <p>Período: 24/02/2026 a 01/03/2026</p> </div> </li>
+                            <li> <div class="calendar-icon">📅</div> <div> <h4>Elaboração do Playbook de Vendas</h4> <p>Período: 08/03/2026 a 18/03/2026</p> </div> </li>
+                        </ul>
                     </div>
+
+                    <div id="details-daniel" style="margin-top: 4rem;">
+                        <h2>Investimento na Execução (Daniel)</h2>
+                        <div class="total-investment">
+                            <p>Valor Total da Execução e Treinamento</p>
+                            <p class="total-value">R$ 38.000,00</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <section id="final-summary">
+            <div class="container">
+                <h2>Resumo do Investimento Total</h2>
+                <div class="final-investment-summary">
+                    <h3>Proposta Integrada</h3>
+                    <p>Estratégia & Diagnóstico (Luiz): R$ 47.000,00</p>
+                    <p>Execução & Treinamento (Daniel): R$ 38.000,00</p>
+                    <p class="grand-total">R$ 85.000,00</p>
+                    <h3>Condições de Pagamento</h3>
+                    <p>50% na assinatura do contrato e 50% na entrega final do projeto.</p>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-black py-12 mt-16">
-        <div class="container mx-auto px-8 text-center text-gray-400">
-            <img src="https://raw.githubusercontent.com/Clebito2/layout/main/Logo%20live%20oficial-34.png" alt="Logo Live" class="h-20 mx-auto mb-8">
-            <p class="font-semibold text-white text-lg">Live Liderança & Vendas</p>
-            <p class="text-sm">Alta performance começa com atitude.</p>
-            <p class="text-sm mt-4">Proposta elaborada por Luiz Portal | luizportal@ecossistemalive.com.br</p>
+    <footer class="footer">
+        <div class="container">
+            <img src="https://raw.githubusercontent.com/Clebito2/layout/main/Logo%20live%20oficial-34.png" alt="Logo Live Liderança & Vendas">
+            <p>Live Liderança & Vendas</p>
+            <p>Alta performance começa com atitude.</p>
+            <p style="margin-top: 1rem;">Luiz Portal - luizportal@ecossistemalive.com.br</p>
         </div>
     </footer>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const sections = document.querySelectorAll('.section-reveal');
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
             }
-        });
-    }, {
-        threshold: 0.1
-    });
+            tablinks = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
 
-    sections.forEach(section => {
-        observer.observe(section);
-    });
-});
-</script>
+        // Garante que a primeira aba esteja visível ao carregar
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelector('.tab-button.active').click();
+        });
+    </script>
 
 </body>
 </html>
