@@ -186,23 +186,6 @@
             margin-top: -4px;
         }
 
-        .total-investment {
-            text-align: center;
-            background-color: #04121f;
-            padding: 2rem;
-            border-radius: 0.5rem;
-            margin: 2rem 0;
-        }
-        .total-investment p {
-            margin: 0;
-            font-size: 1.25rem;
-        }
-        .total-investment .total-value {
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--color-primary);
-            margin-top: 0.5rem;
-        }
         .footer {
             background-color: #000;
             padding: 3rem 0;
@@ -225,16 +208,24 @@
         .final-investment-summary h3 {
             font-size: 1.5rem;
             margin-top: 0;
+            margin-bottom: 1.5rem;
         }
         .final-investment-summary p {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: var(--color-text);
+            line-height: 1.7;
         }
         .final-investment-summary .grand-total {
-            font-size: 3.5rem;
+            font-size: 2.5rem;
             font-weight: 700;
             color: var(--color-primary);
             margin: 1rem 0;
+        }
+        .final-investment-summary .note {
+            font-size: 0.9rem;
+            font-style: italic;
+            color: var(--color-text-muted);
+            margin-top: 1.5rem;
         }
     </style>
 </head>
@@ -249,8 +240,8 @@
     <main>
         <div class="tab-container">
             <div class="tabs container">
-                <button class="tab-button active" onclick="openTab(event, 'Luiz')">Estratégia & Diagnóstico (Luiz)</button>
-                <button class="tab-button" onclick="openTab(event, 'Daniel')">Execução & Treinamento (Daniel)</button>
+                <button class="tab-button active" onclick="openTab(event, 'Luiz')">Estratégia & Diagnóstico</button>
+                <button class="tab-button" onclick="openTab(event, 'Daniel')">Execução & Treinamento</button>
             </div>
         </div>
 
@@ -304,32 +295,6 @@
                     </div>
                 </div>
             </section>
-
-            <section id="details-luiz">
-                <div class="container">
-                    <h2>Investimento Estratégico (Luiz)</h2>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Entregável</th>
-                                <th class="text-right">Valor</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr> <td>Relatório de Diagnóstico da Estrutura Comercial</td> <td class="text-right">R$ 6.000,00</td> </tr>
-                            <tr> <td>Mapeamento dos Processos de Gestão de Leads</td> <td class="text-right">R$ 4.000,00</td> </tr>
-                            <tr> <td>Plano de Expansão para Novos Nichos de Mercado</td> <td class="text-right">R$ 15.000,00</td> </tr>
-                            <tr> <td>Estratégia de Fortalecimento da Presença Regional</td> <td class="text-right">R$ 10.000,00</td> </tr>
-                            <tr> <td>Implementação de Métricas de Desempenho</td> <td class="text-right">R$ 7.000,00</td> </tr>
-                            <tr> <td>Relatório de Otimização Contínua</td> <td class="text-right">R$ 5.000,00</td> </tr>
-                        </tbody>
-                    </table>
-                    <div class="total-investment">
-                        <p>Valor Total da Estratégia</p>
-                        <p class="total-value">R$ 47.000,00</p>
-                    </div>
-                </div>
-            </section>
         </div>
 
         <!-- Conteúdo da Aba do Daniel -->
@@ -365,28 +330,19 @@
                             <li> <div class="calendar-icon">📅</div> <div> <h4>Elaboração do Playbook de Vendas</h4> <p>Período: 08/03/2026 a 18/03/2026</p> </div> </li>
                         </ul>
                     </div>
-
-                    <div id="details-daniel" style="margin-top: 4rem;">
-                        <h2>Investimento na Execução (Daniel)</h2>
-                        <div class="total-investment">
-                            <p>Valor Total da Execução e Treinamento</p>
-                            <p class="total-value">R$ 38.000,00</p>
-                        </div>
-                    </div>
                 </div>
             </section>
         </div>
 
         <section id="final-summary">
             <div class="container">
-                <h2>Resumo do Investimento Total</h2>
+                <h2>Modelo de Investimento</h2>
                 <div class="final-investment-summary">
-                    <h3>Proposta Integrada</h3>
-                    <p>Estratégia & Diagnóstico (Luiz): R$ 47.000,00</p>
-                    <p>Execução & Treinamento (Daniel): R$ 38.000,00</p>
-                    <p class="grand-total">R$ 85.000,00</p>
-                    <h3>Condições de Pagamento</h3>
-                    <p>50% na assinatura do contrato e 50% na entrega final do projeto.</p>
+                    <h3>Proposta de Parceria Híbrida</h3>
+                    <p>Investimento Fixo: <strong>8 parcelas mensais de R$ 3.850,00</strong></p>
+                    <p>Participação nos Resultados: <strong>20% sobre o aumento do lucro operacional</strong></p>
+                    
+                    <p class="note">O lucro operacional atual será o baseline para o cálculo da participação. A apuração e o pagamento de ambos os valores (fixo e variável) serão realizados mensalmente.</p>
                 </div>
             </div>
         </section>
