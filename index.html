@@ -116,59 +116,6 @@
             color: var(--color-text);
         }
         
-        .action-plan {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-        .step {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            width: 200px;
-        }
-        .step-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: var(--color-primary);
-            color: var(--color-background);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-        }
-        .step .duration {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--color-text);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: var(--color-card);
-            border-radius: 0.5rem;
-            overflow: hidden;
-        }
-        th, td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid #1a3a5a;
-        }
-        th {
-            color: var(--color-text);
-            font-weight: 600;
-        }
-        tbody tr:last-child td {
-            border-bottom: none;
-        }
-        .text-right { text-align: right; }
-        
         ul.scope-list {
             list-style: none;
             padding: 0;
@@ -180,7 +127,7 @@
             gap: 1rem;
             margin-bottom: 1.5rem;
         }
-        .check-icon, .calendar-icon {
+        .check-icon, .calendar-icon, .brain-icon {
             font-size: 1.5rem;
             color: var(--color-primary);
             margin-top: -4px;
@@ -240,7 +187,7 @@
     <main>
         <div class="tab-container">
             <div class="tabs container">
-                <button class="tab-button active" onclick="openTab(event, 'Luiz')">Estratégia & Diagnóstico</button>
+                <button class="tab-button active" onclick="openTab(event, 'Luiz')">Estratégia & Liderança</button>
                 <button class="tab-button" onclick="openTab(event, 'Daniel')">Execução & Treinamento</button>
             </div>
         </div>
@@ -256,42 +203,23 @@
                 </div>
             </section>
 
-            <section id="action-plan">
+            <section id="luizs-deliverables">
                 <div class="container">
-                    <h2>Plano de Ação Macro (Estratégia)</h2>
-                    <div class="action-plan">
-                        <div class="step">
-                            <div class="step-icon">1</div>
-                            <div class="step-content">
-                                <h3>Diagnóstico e Mapeamento</h3>
-                                <p class="duration">2 semanas</p>
-                                <p>Análise da estrutura comercial, gestão de leads, processos e oportunidades de mercado.</p>
-                            </div>
-                        </div>
-                        <div class="step">
-                            <div class="step-icon">2</div>
-                            <div class="step-content">
-                                <h3>Otimização de Processos</h3>
-                                <p class="duration">6 semanas</p>
-                                <p>Desenvolvimento de soluções para otimizar a gestão de leads e produção.</p>
-                            </div>
-                        </div>
-                        <div class="step">
-                            <div class="step-icon">3</div>
-                            <div class="step-content">
-                                <h3>Expansão de Mercado</h3>
-                                <p class="duration">4 semanas</p>
-                                <p>Estratégias para expansão para novos nichos e fortalecimento regional.</p>
-                            </div>
-                        </div>
-                        <div class="step">
-                            <div class="step-icon">4</div>
-                            <div class="step-content">
-                                <h3>Análise de Performance</h3>
-                                <p class="duration">2 semanas</p>
-                                <p>Implementação de métricas para otimização contínua e aumento da lucratividade.</p>
-                            </div>
-                        </div>
+                    <h2>Plano de Ação e Entregáveis (Estratégia)</h2>
+                     <div class="card" style="margin-top: 1rem;">
+                        <ul class="scope-list">
+                            <li> <div class="brain-icon">🧠</div> <div> <h4>Desenho do processo em Fluxograma</h4> <p>Responsável: Luiz | Horas: 6</p> </div> </li>
+                            <li> <div class="brain-icon">🧠</div> <div> <h4>Treinamento de líderes comerciais: Liderança e Indicadores</h4> <p>Responsável: Luiz | Horas: 2</p> </div> </li>
+                            <li> <div class="brain-icon">🧠</div> <div> <h4>Planejamento de Novos Canais de Venda (Marketplace/Varejo)</h4> <p>Responsável: Luiz | Horas: 10</p> </div> </li>
+                            <li> <div class="brain-icon">🧠</div> <div> <h4>Desenvolvimento do Programa de Sucesso do Cliente (CS)</h4> <p>Responsável: Luiz | Horas: 8</p> </div> </li>
+                            <li> <div class="brain-icon">🧠</div> <div> <h4>Análise e Otimização do Funil de Vendas (AOV)</h4> <p>Responsável: Luiz | Horas: 7</p> </div> </li>
+                            <li> <div class="brain-icon">🧠</div> <div> <h4>Reunião de Revisão Estratégica Trimestral (QBR)</h4> <p>Responsável: Luiz | Horas: 4</p> </div> </li>
+                            <li> <div class="brain-icon">🧠</div> <div> <h4>Mentoria Estratégica com a Diretoria (Bi-semanal)</h4> <p>Responsável: Luiz | Horas: 8</p> </div> </li>
+                            <li> <div class="brain-icon">🧠</div> <div> <h4>Desenvolvimento de Relatórios de Inteligência de Mercado</h4> <p>Responsável: Luiz | Horas: 6</p> </div> </li>
+                            <li> <div class="brain-icon">🧠</div> <div> <h4>Workshop de Visão de Futuro e Inovação</h4> <p>Responsável: Luiz | Horas: 2</p> </div> </li>
+                            <li> <div class="brain-icon">🧠</div> <div> <h4>Ajustes eventuais de processos e documentos</h4> <p>Responsável: Luiz | Horas: 4</p> </div> </li>
+                            <li> <div class="brain-icon">🧠</div> <div> <h4>Reunião de Encerramento e Entrega das Documentações</h4> <p>Responsável: Luiz | Horas: 2</p> </div> </li>
+                        </ul>
                     </div>
                 </div>
             </section>
@@ -301,33 +229,33 @@
         <div id="Daniel" class="tab-content">
             <section id="daniels-deliverables">
                 <div class="container">
-                    <h2>Plano de Execução e Entregáveis (Daniel)</h2>
+                    <h2>Plano de Execução e Entregáveis (Tático)</h2>
                     <div class="card" style="margin-top: 1rem;">
                         <h3 style="margin-top:0; margin-bottom: 2rem;">Ações de 2025</h3>
                         <ul class="scope-list">
-                            <li> <div class="calendar-icon">📅</div> <div> <h4>Reunião com gestores para entendimento do processo comercial</h4> <p>Período: 09/07/2025</p> </div> </li>
-                            <li> <div class="calendar-icon">📅</div> <div> <h4>Observação prática do processo de vendas</h4> <p>Período: 16/07/2025 a 21/07/2025</p> </div> </li>
-                            <li> <div class="calendar-icon">📅</div> <div> <h4>Apresentação de melhorias, METAS SMART e alinhamento</h4> <p>Período: 28/07/2025</p> </div> </li>
-                            <li> <div class="calendar-icon">📅</div> <div> <h4>Pesquisa, observação e testes de roteiro comercial</h4> <p>Período: 16/08/2025 a 21/08/2025</p> </div> </li>
-                            <li> <div class="calendar-icon">📅</div> <div> <h4>Apresentação do fluxograma e roteiro inicial de vendas</h4> <p>Período: 28/08/2025</p> </div> </li>
-                            <li> <div class="calendar-icon">📅</div> <div> <h4>Ajustes de processos e documentos</h4> <p>Período: 04/09/2025</p> </div> </li>
-                            <li> <div class="calendar-icon">📅</div> <div> <h4>Treinamento: Prospecção e Leads Inbound</h4> <p>Período: 11/09/2025</p> </div> </li>
-                            <li> <div class="calendar-icon">📅</div> <div> <h4>Treinamento: Vendas de Alto Impacto</h4> <p>Período: 18/09/2025</p> </div> </li>
-                            <li> <div class="calendar-icon">📅</div> <div> <h4>Acompanhamento prático: prospecção</h4> <p>Período: 02/10/2025 a 07/10/2025</p> </div> </li>
-                            <li> <div class="calendar-icon">📅</div> <div> <h4>Acompanhamento prático: orçamento e negociação</h4> <p>Período: 14/10/2025 a 19/10/2025</p> </div> </li>
-                            <li> <div class="calendar-icon">📅</div> <div> <h4>Acompanhamento prático: Dia de vendedor</h4> <p>Período: 26/10/2025 a 31/10/2025</p> </div> </li>
+                            <li> <div class="calendar-icon">📅</div> <div> <h4>Reunião com gestores para entendimento do processo comercial</h4> <p>Período: Primeira Semana de Setembro</p> </div> </li>
+                            <li> <div class="calendar-icon">📅</div> <div> <h4>Observação prática do processo de vendas</h4> <p>Período: Segunda Semana de Setembro</p> </div> </li>
+                            <li> <div class="calendar-icon">📅</div> <div> <h4>Apresentação de melhorias, METAS SMART e alinhamento</h4> <p>Período: Terceira Semana de Setembro</p> </div> </li>
+                            <li> <div class="calendar-icon">📅</div> <div> <h4>Pesquisa, observação e testes de roteiro comercial</h4> <p>Período: Quarta Semana de Setembro</p> </div> </li>
+                            <li> <div class="calendar-icon">📅</div> <div> <h4>Apresentação do fluxograma e roteiro inicial de vendas</h4> <p>Período: Primeira Semana de Outubro</p> </div> </li>
+                            <li> <div class="calendar-icon">📅</div> <div> <h4>Ajustes de processos e documentos</h4> <p>Período: Segunda Semana de Outubro</p> </div> </li>
+                            <li> <div class="calendar-icon">📅</div> <div> <h4>Treinamento: Prospecção e Leads Inbound</h4> <p>Período: Terceira Semana de Outubro</p> </div> </li>
+                            <li> <div class="calendar-icon">📅</div> <div> <h4>Treinamento: Vendas de Alto Impacto</h4> <p>Período: Quarta Semana de Outubro</p> </div> </li>
+                            <li> <div class="calendar-icon">📅</div> <div> <h4>Acompanhamento prático: prospecção</h4> <p>Período: Primeira Semana de Novembro</p> </div> </li>
+                            <li> <div class="calendar-icon">📅</div> <div> <h4>Acompanhamento prático: orçamento e negociação</h4> <p>Período: Segunda Semana de Novembro</p> </div> </li>
+                            <li> <div class="calendar-icon">📅</div> <div> <h4>Acompanhamento prático: Dia de vendedor</h4> <p>Período: Terceira Semana de Novembro</p> </div> </li>
                         </ul>
                     </div>
 
                     <div class="card" style="margin-top: 3rem;">
                         <h3 style="margin-top:0; margin-bottom: 2rem;">Ações de 2026</h3>
                         <ul class="scope-list">
-                            <li> <div class="calendar-icon">📅</div> <div> <h4>Elaboração de Dashboard para gestão comercial</h4> <p>Período: 03/01/2026 a 08/01/2026</p> </div> </li>
-                            <li> <div class="calendar-icon">📅</div> <div> <h4>Treinamento de Dashboard e gestão por indicadores</h4> <p>Período: 15/01/2026 e 22/01/2026</p> </div> </li>
-                            <li> <div class="calendar-icon">📅</div> <div> <h4>Reuniões de rotina (Pipeline e Diretoria)</h4> <p>Período: Início em 29/01/2026</p> </div> </li>
-                            <li> <div class="calendar-icon">📅</div> <div> <h4>Acompanhamento geral de vendas</h4> <p>Período: 12/02/2026 a 17/02/2026</p> </div> </li>
-                            <li> <div class="calendar-icon">📅</div> <div> <h4>Elaboração do Ramp-up de Treinamento</h4> <p>Período: 24/02/2026 a 01/03/2026</p> </div> </li>
-                            <li> <div class="calendar-icon">📅</div> <div> <h4>Elaboração do Playbook de Vendas</h4> <p>Período: 08/03/2026 a 18/03/2026</p> </div> </li>
+                            <li> <div class="calendar-icon">📅</div> <div> <h4>Elaboração de Dashboard para gestão comercial</h4> <p>Período: Primeira Semana de Janeiro</p> </div> </li>
+                            <li> <div class="calendar-icon">📅</div> <div> <h4>Treinamento de Dashboard e gestão por indicadores</h4> <p>Período: Segunda e Terceira Semanas de Janeiro</p> </div> </li>
+                            <li> <div class="calendar-icon">📅</div> <div> <h4>Reuniões de rotina (Pipeline e Diretoria)</h4> <p>Período: Início na Quarta Semana de Janeiro</p> </div> </li>
+                            <li> <div class="calendar-icon">📅</div> <div> <h4>Acompanhamento geral de vendas</h4> <p>Período: Fevereiro</p> </div> </li>
+                            <li> <div class="calendar-icon">📅</div> <div> <h4>Elaboração do Ramp-up de Treinamento</h4> <p>Período: Primeira Semana de Março</p> </div> </li>
+                            <li> <div class="calendar-icon">📅</div> <div> <h4>Elaboração do Playbook de Vendas</h4> <p>Período: Segunda e Terceira Semanas de Março</p> </div> </li>
                         </ul>
                     </div>
                 </div>
@@ -339,8 +267,8 @@
                 <h2>Modelo de Investimento</h2>
                 <div class="final-investment-summary">
                     <h3>Proposta de Parceria Híbrida</h3>
-                    <p>Investimento Fixo: <strong>8 parcelas mensais de R$ 3.850,00</strong></p>
-                    <p>Participação nos Resultados: <strong>20% sobre o aumento do lucro operacional</strong></p>
+                    <p>Investimento Fixo: <strong>8 parcelas mensais de R$ 3.000,00</strong></p>
+                    <p>Participação nos Resultados: <strong>22% sobre o aumento do lucro operacional</strong></p>
                     
                     <p class="note">O lucro operacional atual será o baseline para o cálculo da participação. A apuração e o pagamento de ambos os valores (fixo e variável) serão realizados mensalmente.</p>
                 </div>
@@ -380,3 +308,4 @@
 
 </body>
 </html>
+
